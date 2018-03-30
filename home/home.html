@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="../common/vue.js"></script>
+    <script src="../common/element.js"></script>
+    <link rel="stylesheet" type="text/css" href="../common/element.css">
+    <!-- 坑千万不能用这个 -->
+    <!-- <link rel="stylesheet/less" href="./home.less"> -->
+    <!-- <link lang='less' rel="stylesheet" href="home.less"> -->
+    <!-- <link href="home.less" media="screen" rel="stylesheet/less"> -->
+    <!-- <script src="../common/less.min.js"></script> -->
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <title></title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 挂上 vue  组件的 template -->
+        <template>
+            <div class="home">
+                <div class="main">
+                    <header class="header">
+                        <div class="logo">
+                        </div>
+                        <div class="menu">
+                            <ul>
+                                <li v-bind:class="{ selected: index == 1 }" @click="clickMenu(1)">关于我们</li>
+                                <li v-bind:class="{ selected: index == 2 }" @click="clickMenu(2)">企业文化</li>
+                                <li v-bind:class="{ selected: index == 3 }" @click="clickMenu(3)">登录</li>
+                            </ul>
+                        </div>
+                    </header>
+                    <footer class="footer">
+                        <p class="copyright">
+                            &copy; Copyright 连云港港口控股集团有限公司 苏ICP备07020600号
+                        </p>
+                    </footer>
+                </div>
+                <div class="mask" v-if="showMask">
+                </div>
+                <div class="pop" v-if="showMask">
+                    <i class="colse" @click="close"></i>
+                    <h1>{{listPop[index-1].title}}</h1>
+                    <p v-for="item in listPop[index-1].list">{{item}}</p>
+                </div>
+            </div>
+        </template>
+    </div>
+</body>
+<script type="text/javascript">
+var Main = {
+    data() {
+        return {
+            showMask: false,
+            index: 10,
+            listPop: [{
+                "title": "关于我们",
+                "list": [
+                    "   连云港港公路港，位于上合组织（连云港）国际物流园区内，紧邻东疏港高速公路，总占地面积102万平方米，分三期建设，整个园区实行封闭式管理。目前揭牌启用的是一期项目，建设投资4亿元，已完成停车场建设面积15万平方米，可用大型车位1100个，现可提供管理服务、信息交易、车辆调度、仓储、配套服务5个功能模块的服务。连云港公路港在为港口整体功能服务的同时，重点致力于融合物流服务、物流需求、物流载体三大资源，为众多物流企业提供信息交易、商务配套和物业等系统服务",
+
+                    "  连合智运为连云港港公路港物流综合服务平台",
+                ]
+            }, {
+                "title": "企业文化",
+                "list": [
+                    "因团队协作而强大",
+                    "因精细管理而专业",
+                    "因信守承诺而享誉",
+                    "因客户满意而自豪"
+                ]
+            }],
+        }
+    },
+    methods: {
+        clickMenu(index) {
+            this.index = index;
+            if (3 == index) {
+                window.location.href = '/login/login.html';
+            } else if (1 == index || 2 == index) {
+                this.showMask = true;
+            }
+        },
+        close() {
+            this.showMask = false;
+            this.index = 10;
+        }
+    }
+}
+var Ctor = Vue.extend(Main)
+new Ctor().$mount('#app')
+</script>
+<style rel="stylesheet/css">
+/*此处只能用css*/
+.home {
+    background-color: red;
+}
+.main {
+    background-color: orange;
+}
+</style>
+
+</html>

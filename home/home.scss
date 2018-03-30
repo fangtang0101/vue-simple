@@ -1,0 +1,108 @@
+ $color-main: #1995d8;
+ $color-text:#fff;
+ $color-text-pop:#333;
+ $color-text-title:#6aaedd;
+
+ @mixin pop-block {
+   width: 100%;
+   height: calc(100% + 36px);
+   top: 0px;
+   position: absolute;
+   z-index: 10001;
+ }
+ html,
+ body {
+   height: 100%;
+ }
+ body {
+   background: url(../login/img/index_bg.jpg) no-repeat center 0;
+   background-size: cover;
+ }
+ .selected {
+   border-bottom: 2px solid #fff;
+ }
+ .home {
+   position: relative;
+   height: calc(100% - 36px);
+   .main {
+     height: 100%; // min-height: 800px;
+     padding-left: 50px;
+     padding-right: 50px;
+     padding-top: 36px;
+     .header {
+       overhidden: hidden;
+       .logo {
+         float: left;
+         height: 50px;
+         width: 300px;
+         background: url(../login/img/logo.png) no-repeat center 0;
+       }
+       .menu {
+         float: right;
+         ul {
+           overhidden: hidden;
+           li {
+             float: right;
+             color: $color-text;
+             margin-left: 70px;
+             font-size: 20px;
+             padding-bottom: 5px;
+             &:hover {
+               cursor: pointer;
+             }
+           }
+         }
+       }
+     }
+     .middle {
+       min-height: 800px;
+     }
+     .footer {
+       position: absolute;
+       bottom:0px;
+       color: $color-text;
+     }
+   }
+   .mask {
+     @include pop-block;
+     background-color: #000;
+     opacity: 0.5;
+   }
+   .pop {
+     width: calc(100% - 300px);
+     height: calc(100% - 150px);
+     top: 0px;
+     position: absolute;
+     z-index: 10002;
+     color: $color-text;
+     background-color: #fff;
+     margin: 100px;
+     margin-bottom: 50px;
+     opacity: 0.9;
+     padding-left: 50px;
+     padding-right: 50px;
+     h1 {
+       color: $color-text-title;
+       font-size: 30px;
+       margin-top: 100px;
+     }
+     p {
+       color: $color-text-pop;
+       font-size: 14px;
+       margin-top: 20px;
+       line-height: 150%;
+     }
+     .colse {
+       position: absolute;
+       background-color: red;
+       width: 100px;
+       height: 100px;
+       right: 0px;
+       top: 20px;
+       background: url(../login/img/Close.png) no-repeat center 0;
+       &:hover {
+         cursor: pointer;
+       }
+     }
+   }
+ }
